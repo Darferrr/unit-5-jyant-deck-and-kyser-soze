@@ -2,8 +2,13 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     redBird.throwDart()
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    game.over(true)
+    goalPig.destroy(effects.fountain, 2000)
+    pause(2000)
+    if (true) {
+        game.over(true, effects.confetti)
+    }
 })
+let goalPig: Sprite = null
 let redBird: Dart = null
 scene.setBackgroundImage(img`
     9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999
@@ -170,7 +175,7 @@ redBird = darts.create(img`
     `, SpriteKind.Player)
 redBird.setTrace()
 redBird.controlWithArrowKeys()
-let goalPig = sprites.create(img`
+goalPig = sprites.create(img`
     . . . f f f . . . . f f f . . . 
     . . f 7 7 7 f . . f 7 7 7 f . . 
     . . f 7 3 7 7 f f 7 7 3 7 f . . 
